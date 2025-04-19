@@ -1,1 +1,8 @@
 /.idea
+day[0-9]*/FileContentIndex/
+day[0-9]*/**/.vs/
+day[0-9]*/**/bin/
+day[0-9]*/**/obj/
+.vs/
+day[0-9]*/.idea/
+day[0-9]*/*.zip
