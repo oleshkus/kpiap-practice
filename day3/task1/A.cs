@@ -11,12 +11,12 @@ public class A
         this.b = b;
     }
     
-    public int equation()
+    public int Equation()
     {
         return ((3*b-(2/a^2))/4);
     }
     
-    public double square()
+    public double Square()
     {
         return Math.Pow((double)a,(double)b);
     }

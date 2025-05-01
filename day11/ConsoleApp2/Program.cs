@@ -1,56 +1,5 @@
 ﻿using System;
-
-abstract class Vehicle
-{
-    protected string name;
-    protected double fuelConsumption; 
-
-    public Vehicle(string name, double fuelConsumption)
-    {
-        this.name = name;
-        this.fuelConsumption = fuelConsumption;
-    }
-
-    public abstract void DisplayInfo();
-
-    public double GetFuelConsumption()
-    {
-        return fuelConsumption;
-    }
-}
-
-class Car : Vehicle
-{
-    private int numberOfDoors;
-
-    public Car(string name, double fuelConsumption, int numberOfDoors)
-        : base(name, fuelConsumption)
-    {
-        this.numberOfDoors = numberOfDoors;
-    }
-
-    public override void DisplayInfo()
-    {
-        Console.WriteLine($"Автомобиль: {name}, Расход топлива: {fuelConsumption} л/100 км, Количество дверей: {numberOfDoors}");
-    }
-}
-
-class Truck : Vehicle
-{
-    private double loadCapacity;
-
-    public Truck(string name, double fuelConsumption, double loadCapacity)
-        : base(name, fuelConsumption)
-    {
-        this.loadCapacity = loadCapacity;
-    }
-
-    public override void DisplayInfo()
-    {
-        Console.WriteLine($"Грузовик: {name}, Расход топлива: {fuelConsumption} л/100 км, Грузоподъемность: {loadCapacity} т");
-    }
-}
-
+namespace ConsoleApp2;
 class Program
 {
     static void Main(string[] args)
