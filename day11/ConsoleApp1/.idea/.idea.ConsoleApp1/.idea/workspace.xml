@@ -8,21 +8,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ef21f5-551f-4bb4-a6b0-d266a220ae8b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day11/ConsoleApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../day11/ConsoleApp1/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day11/ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../day11/ConsoleApp2/Program.cs" afterDir="false" />
+    <list default="true" id="4129b053-a5d3-4fec-9811-1d01f76f131e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../day10/ConsoleApp1/.idea/.idea.ConsoleApp1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day10/ConsoleApp1/.idea/.idea.ConsoleApp1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ConsoleApp2/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day12/ConsoleApp1/.idea/.idea.ConsoleApp1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day12/ConsoleApp1/.idea/.idea.ConsoleApp1/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 7
 }</component>
-  <component name="ProjectId" id="2wGHPB8CSKneXae52zZYicywERD" />
+  <component name="ProjectId" id="2wHZOzPDOIkiZSAVdrCgO8GEsBX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,7 +45,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.ConsoleApp2">
+  <component name="RunManager" selected=".NET Project.ConsoleApp1">
     <configuration name="ConsoleApp1" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -83,20 +86,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a5ef21f5-551f-4bb4-a6b0-d266a220ae8b" name="Changes" comment="" />
+      <changelist id="4129b053-a5d3-4fec-9811-1d01f76f131e" name="Changes" comment="" />
       <created>1727126582283</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727126582283</updated>
       <workItem from="1727126583642" duration="674000" />
-      <workItem from="1745660965510" duration="1928000" />
+      <workItem from="1745700432620" duration="2734000" />
+      <workItem from="1745998523795" duration="1790000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
