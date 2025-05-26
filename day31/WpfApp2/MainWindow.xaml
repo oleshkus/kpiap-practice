@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Управление турами и туристами" Height="600" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button x:Name="btnLoadTours" Content="Загрузить туры" Click="btnLoadTours_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnLoadTourists" Content="Загрузить туристов" Click="btnLoadTourists_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnSave" Content="Сохранить изменения" Click="btnSave_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnShowData" Content="Показать данные" Click="btnShowData_Click" Margin="5" Padding="10,5"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <GroupBox Grid.Column="0" Header="Туры" Margin="5">
+                <DataGrid x:Name="toursGrid" AutoGenerateColumns="False" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Country}"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            
+            <GroupBox Grid.Column="1" Header="Туристы" Margin="5">
+                <DataGrid x:Name="touristsGrid" AutoGenerateColumns="False" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"/>
+                        <DataGridTextColumn Header="Паспорт" Binding="{Binding Passport}"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Button x:Name="btnAddTour" Content="Добавить тур" Click="btnAddTour_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnDeleteTour" Content="Удалить тур" Click="btnDeleteTour_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnAddTourist" Content="Добавить туриста" Click="btnAddTourist_Click" Margin="5" Padding="10,5"/>
+            <Button x:Name="btnEditTourist" Content="Изменить туриста" Click="btnEditTourist_Click" Margin="5" Padding="10,5"/>
+        </StackPanel>
+    </Grid>
+</Window>
