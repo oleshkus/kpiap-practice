@@ -1,36 +1,25 @@
-using System;
+namespace Task1;
 
-namespace Task1
+internal class Program
 {
-    public class Program
+    private static void Main(string[] args)
     {
-        public static void Main()
+        var array = new int[5];
+        var random = new Random();
+        for (var i = 0; i < array.Length; i++)
         {
-            try
-            {
-                Console.Write("Enter x: ");
-                double x = double.Parse(Console.ReadLine());
+            array[i] = random.Next(-100, 100);
+            Console.WriteLine(array[i]);
+        }
 
-                // Expression: y = sin^3(x) / x^3
-                double numerator = Math.Pow(Math.Sin(x), 3);
-                double denominator = Math.Pow(x, 3);
-
-                double y = numerator / denominator;
-
-                Console.WriteLine($"Value of expression: {y}");
-            }
-            catch (DivideByZeroException)
+        foreach (var element in array)
+        {
+            if (element > 0)
             {
-                Console.WriteLine("Error: Division by zero!");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Error: Invalid input format!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                Console.WriteLine($"{element} > 0");
             }
         }
+
+        Console.WriteLine($"{array.Length} - Array length");
     }
 }

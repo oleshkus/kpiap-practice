@@ -1,55 +1,111 @@
-using System;
+namespace Task3;
 
-namespace Task3
+internal class Program
 {
-    public class Program
+    private static void Main(string[] args)
     {
-        /// <summary>
-        /// Assigns the minimum of x and y to x, and the maximum to y.
-        /// </summary>
-        private static void Minmax(ref double x, ref double y)
+        // Сумма чисел на отрезке [k, l)
+        Console.Write("Введите начало диапазона (K): ");
+        int k = ReadIntFromConsole();
+        Console.Write("Введите конец диапазона (L): ");
+        int l = ReadIntFromConsole();
+        int sum = CalculateRangeSum(k, l);
+        Console.WriteLine($"Сумма чисел в диапазоне [{k}, {l}): {sum}\n");
+
+        // Работа с двумерным массивом
+        Console.Write("Введите количество строк массива: ");
+        int rowCount = ReadIntFromConsole();
+        Console.Write("Введите количество столбцов массива: ");
+        int columnCount = ReadIntFromConsole();
+        var matrix = GenerateRandomMatrix(rowCount, columnCount, -50, 50);
+        Console.WriteLine("\nСгенерированный массив:");
+        PrintMatrix(matrix);
+
+        Console.Write("\nВведите номер столбца (с 0): ");
+        int columnIndex = ReadIntFromConsole();
+        if (columnIndex < 0 || columnIndex >= columnCount)
         {
-            if (x > y)
+            Console.WriteLine("Некорректный номер столбца.");
+            return;
+        }
+        int max = FindMaxInColumn(matrix, columnIndex);
+        Console.WriteLine($"Наибольший элемент в столбце {columnIndex}: {max}");
+    }
+
+    /// <summary>
+    /// Считает сумму целых чисел на отрезке [start, end).
+    /// </summary>
+    private static int CalculateRangeSum(int start, int end)
+    {
+        int sum = 0;
+        for (int i = start; i < end; i++)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+
+    /// <summary>
+    /// Генерирует двумерный массив случайных чисел.
+    /// </summary>
+    private static int[,] GenerateRandomMatrix(int rows, int columns, int minValue, int maxValue)
+    {
+        var matrix = new int[rows, columns];
+        var random = new Random();
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
             {
-                double temp = x;
-                x = y;
-                y = temp;
+                matrix[i, j] = random.Next(minValue, maxValue + 1);
             }
         }
+        return matrix;
+    }
 
-        public static void Main()
+    /// <summary>
+    /// Находит максимальный элемент в заданном столбце матрицы.
+    /// </summary>
+    private static int FindMaxInColumn(int[,] matrix, int columnIndex)
+    {
+        int max = matrix[0, columnIndex];
+        for (int i = 1; i < matrix.GetLength(0); i++)
         {
-            try
+            if (matrix[i, columnIndex] > max)
             {
-                Console.Write("Enter A: ");
-                double a = double.Parse(Console.ReadLine());
-                Console.Write("Enter B: ");
-                double b = double.Parse(Console.ReadLine());
-                Console.Write("Enter C: ");
-                double c = double.Parse(Console.ReadLine());
-                Console.Write("Enter D: ");
-                double d = double.Parse(Console.ReadLine());
-
-                // Первый этап: попарно сравниваем (A, B) и (C, D)
-                Minmax(ref a, ref b); // a=min(a,b), b=max(a,b)
-                Minmax(ref c, ref d); // c=min(c,d), d=max(c,d)
-
-                // Второй этап: сравниваем минимумы и максимумы
-                Minmax(ref a, ref c); // a=min(a,c), c=max(a,c)
-                Minmax(ref b, ref d); // b=min(b,d), d=max(b,d)
-
-                // Теперь: a — минимальное, d — максимальное
-                Console.WriteLine($"Minimum: {a}");
-                Console.WriteLine($"Maximum: {d}");
+                max = matrix[i, columnIndex];
             }
-            catch (FormatException)
+        }
+        return max;
+    }
+
+    /// <summary>
+    /// Печатает двумерный массив в консоль.
+    /// </summary>
+    private static void PrintMatrix(int[,] matrix)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                Console.WriteLine("Error: Invalid input format!");
+                Console.Write($"{matrix[i, j],5}");
             }
-            catch (Exception ex)
+            Console.WriteLine();
+        }
+    }
+
+    /// <summary>
+    /// Безопасно читает целое число с консоли.
+    /// </summary>
+    private static int ReadIntFromConsole()
+    {
+        while (true)
+        {
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int value))
             {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                return value;
             }
+            Console.Write("Ошибка ввода. Повторите попытку: ");
         }
     }
 }

@@ -6,42 +6,19 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            // Values of x to evaluate
-            double[] xValues = { 1, 3 };
-            foreach (var x in xValues)
+            Console.Write("Введите целое число N (1 <= N <= 10): ");
+            int n = int.Parse(Console.ReadLine());
+            if (n < 1 || n > 10)
             {
-                try
-                {
-                    double y = CalculateExpression(x);
-                    Console.WriteLine($"x = {x}, y = {y}");
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine($"x = {x}: {ex.Message}");
-                }
+                Console.WriteLine("Ошибка: N должно быть от 1 до 10.");
+                return;
             }
-        }
-
-        /// <summary>
-        /// Calculates the value of the expression:
-        /// y = 2 * arctg(sqrt(1 - x^2)) + ln(7x) / (1 + e^x)
-        /// </summary>
-        /// <param name="x">Input value</param>
-        /// <returns>Result of the expression</returns>
-        static double CalculateExpression(double x)
-        {
-            // Check if sqrt(1 - x^2) is valid
-            double sqrtArg = 1 - x * x;
-            if (sqrtArg < 0)
+            int sum = 0;
+            for (int i = n; i <= 2 * n; i++)
             {
-                throw new ArgumentException($"sqrt(1 - x^2) is not defined for x = {x}");
+                sum += i * i;
             }
-            double sqrtValue = Math.Sqrt(sqrtArg);
-            double arctgValue = Math.Atan(sqrtValue);
-            double lnValue = Math.Log(7 * x);
-            double expValue = Math.Exp(x);
-            double y = 2 * arctgValue + lnValue / (1 + expValue);
-            return y;
+            Console.WriteLine($"Сумма квадратов от N до 2N: {sum}");
         }
     }
 }

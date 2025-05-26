@@ -1,25 +1,20 @@
-namespace Task1;
-
-internal class Program
+﻿namespace task1
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        var array = new int[5];
-        var random = new Random();
-        for (var i = 0; i < array.Length; i++)
+        static void Main(string[] args)
         {
-            array[i] = random.Next(-100, 100);
-            Console.WriteLine(array[i]);
-        }
+            Console.WriteLine("Введите строку:");
+            string message = Console.ReadLine();
+            string[] words = message.Split(' ');
 
-        foreach (var element in array)
-        {
-            if (element > 0)
+            foreach (string word in words)
             {
-                Console.WriteLine($"{element} > 0");
+                if (word.Length > 0 && char.IsLower(word[0]))
+                {
+                    Console.WriteLine(word);
+                }
             }
         }
-
-        Console.WriteLine($"{array.Length} - Array length");
     }
 }

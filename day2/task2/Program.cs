@@ -1,26 +1,19 @@
-namespace Task2
+namespace task2;
+
+class Program
 {
-    using System;
-
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.Write("Введите трёхзначное число: ");
-            int number = int.Parse(Console.ReadLine());
-            if (number < 100 || number > 999)
-            {
-                Console.WriteLine("Ошибка: число должно быть трёхзначным.");
-                return;
-            }
-            int first = number / 100;
-            int second = (number / 10) % 10;
-            int third = number % 10;
-
-            bool isIncreasing = first < second && second < third;
-            Console.WriteLine(isIncreasing
-                ? "Цифры образуют возрастающую последовательность."
-                : "Цифры не образуют возрастающую последовательность.");
-        }
+        Person person = new Person("John", "Doe", 30);
+        Console.WriteLine($"Name: {person.Name}, Surname: {person.Surname}, Age: {person.Age}");
+        
+        Student student = new Student("Alice", "Smith", 20, "Computer Science", "Bachelor");
+        Console.WriteLine($"Name: {student.Name}, Surname: {student.Surname}, Age: {student.Age}, Course: {student.Course}, Speciality: {student.Speciality}");
+        
+        Teacher teacher = new Teacher("Michael", "Johnson", 35, "Mathematics", "Master");
+        Console.WriteLine($"Name: {teacher.Name}, Surname: {teacher.Surname}, Age: {teacher.Age}, Speciality: {teacher.Speciality}");
+        
+        Headmaster headmaster = new Headmaster("Emily", "Brown", 40, "Teacher", "Master");
+        Console.WriteLine($"Name: {headmaster.Name}, Surname: {headmaster.Surname}, Age: {headmaster.Age}, Job: {headmaster.Job}, Speciality: {headmaster.Speciality}");
     }
 }

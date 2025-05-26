@@ -1,19 +1,19 @@
-﻿namespace task1
+using System.Text.RegularExpressions;
+
+namespace Task1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Введите строку:");
-            string message = Console.ReadLine();
-            string[] words = message.Split(' ');
-
-            foreach (string word in words)
+            Console.WriteLine("Введите текст:");
+            string input = Console.ReadLine();
+            string pattern = "^\\+?[1-9][0-9]{7,14}$";
+            MatchCollection matches = Regex.Matches(input, pattern);
+            Console.WriteLine("Найденные мобильные номера:");
+            foreach (Match match in matches)
             {
-                if (word.Length > 0 && char.IsLower(word[0]))
-                {
-                    Console.WriteLine(word);
-                }
+                Console.WriteLine(match.Value);
             }
         }
     }

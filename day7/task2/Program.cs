@@ -1,23 +1,19 @@
-﻿namespace task2
+using System.Text.RegularExpressions;
+
+namespace Task2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Введите строку:");
+            Console.WriteLine("Введите текст:");
             string input = Console.ReadLine();
-            string[] words = input.Split(' ');
-
-            foreach (string word in words)
+            string pattern = @"\b\d{7}\b";
+            MatchCollection matches = Regex.Matches(input, pattern);
+            Console.WriteLine("Найденные семизначные номера телефонов:");
+            foreach (Match match in matches)
             {
-                for (int i = 0; i < word.Length - 1; i++)
-                {
-                    if (word[i] == word[i + 1])
-                    {
-                        Console.WriteLine(word);
-                        break; 
-                    }
-                }
+                Console.WriteLine(match.Value);
             }
         }
     }

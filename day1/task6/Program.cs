@@ -1,22 +1,31 @@
-namespace Task6
+﻿namespace task6;
+/// <summary>
+///  Дан номер карты k ( 146k ), определить достоинство карты.
+/// Достоинства определяются по следующему правилу: &quot;туз&quot; - 14, &quot;король&quot; - 13,
+/// &quot;дама&quot; - 12, &quot;валет&quot; - 11, &quot;десятка&quot; - 10, …, &quot;шестерка&quot; - 6.
+/// </summary>
+class Program
 {
-    using System;
-
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        Random rand = new Random();
+        for (int i = 0; i < 48; i++)
         {
-            Console.Write("Введите трёхзначное число: ");
-            int number = int.Parse(Console.ReadLine());
-            if (number < 100 || number > 999)
-            {
-                Console.WriteLine("Ошибка: число должно быть трёхзначным.");
-                return;
-            }
-            int firstDigit = number / 100;
-            int lastDigit = number % 10;
-            int product = firstDigit * lastDigit;
-            Console.WriteLine($"Произведение первой и последней цифр: {product}");
+            Rank rank = (Rank)rand.Next(6, 15);
+            Console.WriteLine(rank);
         }
+    }
+    
+    public enum Rank
+    {
+        Ace = 14,
+        King = 13,
+        Queen = 12,
+        Jack = 11,
+        Ten = 10,
+        Nine = 9,
+        Eight = 8,
+        Seven = 7,
+        Six = 6,
     }
 }

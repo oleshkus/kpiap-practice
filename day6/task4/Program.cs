@@ -1,112 +1,48 @@
-namespace Task4;
-
-internal class Program
+﻿namespace task4
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        Console.Write("Введите количество строк массива: ");
-        int rowCount = ReadIntFromConsole();
-        Console.Write("Введите количество столбцов массива: ");
-        int columnCount = ReadIntFromConsole();
-        var matrix = GenerateRandomMatrix(rowCount, columnCount, -50, 50);
-        Console.WriteLine("\nСгенерированный массив:");
-        PrintMatrix(matrix);
-
-        Console.Write("\nВведите номер строки (k, с 0): ");
-        int rowIndex = ReadIntFromConsole();
-        if (rowIndex < 0 || rowIndex >= rowCount)
+        static void Main()
         {
-            Console.WriteLine("Некорректный номер строки.");
-            return;
-        }
-        Console.Write("Введите номер столбца (s, с 0): ");
-        int columnIndex = ReadIntFromConsole();
-        if (columnIndex < 0 || columnIndex >= columnCount)
-        {
-            Console.WriteLine("Некорректный номер столбца.");
-            return;
-        }
+            Console.WriteLine("Введите фамилию, имя и отчество:");
+            var input = Console.ReadLine();
 
-        int rowSum = CalculateRowSum(matrix, rowIndex);
-        int columnSum = CalculateColumnSum(matrix, columnIndex);
-        int max = Math.Max(rowSum, columnSum);
+            input = input.Replace(" ", "").ToLower();
 
-        Console.WriteLine($"Сумма элементов строки {rowIndex}: {rowSum}");
-        Console.WriteLine($"Сумма элементов столбца {columnIndex}: {columnSum}");
-        Console.WriteLine($"Максимальное из них: {max}");
-    }
+            int sum = 0;
 
-    /// <summary>
-    /// Генерирует двумерный массив случайных чисел.
-    /// </summary>
-    private static int[,] GenerateRandomMatrix(int rows, int columns, int minValue, int maxValue)
-    {
-        var matrix = new int[rows, columns];
-        var random = new Random();
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
+                
+            foreach (char c in input)
             {
-                matrix[i, j] = random.Next(minValue, maxValue + 1);
+                if (c >= 'а' && c <= 'я')
+                {
+                    sum += c - 'а' + 1; 
+                }
+                else if (c == 'ё') 
+                {
+                    sum += 7; 
+                }
             }
-        }
-        return matrix;
-    }
 
-    /// <summary>
-    /// Считает сумму элементов строки с заданным индексом.
-    /// </summary>
-    private static int CalculateRowSum(int[,] matrix, int rowIndex)
-    {
-        int sum = 0;
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            sum += matrix[rowIndex, j];
-        }
-        return sum;
-    }
-
-    /// <summary>
-    /// Считает сумму элементов столбца с заданным индексом.
-    /// </summary>
-    private static int CalculateColumnSum(int[,] matrix, int columnIndex)
-    {
-        int sum = 0;
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            sum += matrix[i, columnIndex];
-        }
-        return sum;
-    }
-
-    /// <summary>
-    /// Печатает двумерный массив в консоль.
-    /// </summary>
-    private static void PrintMatrix(int[,] matrix)
-    {
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < matrix.GetLength(1); j++)
+                
+            while (sum >= 10)
             {
-                Console.Write($"{matrix[i, j],5}");
+                sum = SumOfDigits(sum);
             }
-            Console.WriteLine();
-        }
-    }
 
-    /// <summary>
-    /// Безопасно читает целое число с консоли.
-    /// </summary>
-    private static int ReadIntFromConsole()
-    {
-        while (true)
+            Console.WriteLine("Код личности: " + sum);
+        }
+
+            
+        static int SumOfDigits(int number)
         {
-            string? input = Console.ReadLine();
-            if (int.TryParse(input, out int value))
+            int sum = 0;
+            while (number > 0)
             {
-                return value;
+                sum += number % 10;
+                number /= 10;
             }
-            Console.Write("Ошибка ввода. Повторите попытку: ");
+            return sum;
         }
     }
 }

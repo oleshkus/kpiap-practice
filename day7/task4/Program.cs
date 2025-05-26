@@ -1,48 +1,20 @@
-﻿namespace task4
+using System.Text.RegularExpressions;
+
+namespace Task4
 {
     internal class Program
     {
-        static void Main()
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Введите фамилию, имя и отчество:");
-            var input = Console.ReadLine();
-
-            input = input.Replace(" ", "").ToLower();
-
-            int sum = 0;
-
-                
-            foreach (char c in input)
+            Console.WriteLine("Введите текст:");
+            string input = Console.ReadLine();
+            string pattern = @"\b([01]?\d|2[0-3]):([0-5]?\d)\b";
+            MatchCollection matches = Regex.Matches(input, pattern);
+            Console.WriteLine("Найденное время:");
+            foreach (Match match in matches)
             {
-                if (c >= 'а' && c <= 'я')
-                {
-                    sum += c - 'а' + 1; 
-                }
-                else if (c == 'ё') 
-                {
-                    sum += 7; 
-                }
+                Console.WriteLine(match.Value);
             }
-
-                
-            while (sum >= 10)
-            {
-                sum = SumOfDigits(sum);
-            }
-
-            Console.WriteLine("Код личности: " + sum);
-        }
-
-            
-        static int SumOfDigits(int number)
-        {
-            int sum = 0;
-            while (number > 0)
-            {
-                sum += number % 10;
-                number /= 10;
-            }
-            return sum;
         }
     }
 }

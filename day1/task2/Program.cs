@@ -1,20 +1,26 @@
-﻿namespace task2;
-
-class Program
+namespace Task2
 {
-    static void Main(string[] args)
+    using System;
+
+    class Program
     {
-        Random random = new Random();
-        var randNum = random.Next(1000, 9999).ToString();
-        Console.WriteLine(randNum);
-        var newNum = $"{randNum[1]}{randNum[0]}{randNum[3]}{randNum[2]}";
-        if (double.TryParse(newNum, out var result))
+        static void Main(string[] args)
         {
-            Console.WriteLine(result);
-        }
-        else
-        {
-            Console.WriteLine("Error");
+            Console.Write("Введите трёхзначное число: ");
+            int number = int.Parse(Console.ReadLine());
+            if (number < 100 || number > 999)
+            {
+                Console.WriteLine("Ошибка: число должно быть трёхзначным.");
+                return;
+            }
+            int first = number / 100;
+            int second = (number / 10) % 10;
+            int third = number % 10;
+
+            bool isIncreasing = first < second && second < third;
+            Console.WriteLine(isIncreasing
+                ? "Цифры образуют возрастающую последовательность."
+                : "Цифры не образуют возрастающую последовательность.");
         }
     }
 }

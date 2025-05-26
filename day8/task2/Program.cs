@@ -1,20 +1,11 @@
-using System.Text.RegularExpressions;
+﻿namespace task2;
 
-namespace Task2
+class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            Console.WriteLine("Введите текст:");
-            string input = Console.ReadLine();
-            string pattern = @"\b\d{7}\b";
-            MatchCollection matches = Regex.Matches(input, pattern);
-            Console.WriteLine("Найденные семизначные номера телефонов:");
-            foreach (Match match in matches)
-            {
-                Console.WriteLine(match.Value);
-            }
-        }
+        EmployeesJob gp;
+        Console.WriteLine($"{EmployeesJob.Worker} должен отработать {(int)EmployeesJob.Worker} часов");
+        
     }
 }

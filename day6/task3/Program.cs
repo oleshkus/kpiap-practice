@@ -1,111 +1,48 @@
-namespace Task3;
-
-internal class Program
+﻿namespace task3
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        // Сумма чисел на отрезке [k, l)
-        Console.Write("Введите начало диапазона (K): ");
-        int k = ReadIntFromConsole();
-        Console.Write("Введите конец диапазона (L): ");
-        int l = ReadIntFromConsole();
-        int sum = CalculateRangeSum(k, l);
-        Console.WriteLine($"Сумма чисел в диапазоне [{k}, {l}): {sum}\n");
-
-        // Работа с двумерным массивом
-        Console.Write("Введите количество строк массива: ");
-        int rowCount = ReadIntFromConsole();
-        Console.Write("Введите количество столбцов массива: ");
-        int columnCount = ReadIntFromConsole();
-        var matrix = GenerateRandomMatrix(rowCount, columnCount, -50, 50);
-        Console.WriteLine("\nСгенерированный массив:");
-        PrintMatrix(matrix);
-
-        Console.Write("\nВведите номер столбца (с 0): ");
-        int columnIndex = ReadIntFromConsole();
-        if (columnIndex < 0 || columnIndex >= columnCount)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Некорректный номер столбца.");
-            return;
-        }
-        int max = FindMaxInColumn(matrix, columnIndex);
-        Console.WriteLine($"Наибольший элемент в столбце {columnIndex}: {max}");
-    }
+            Console.WriteLine("Введите предложение:");
+            var input = Console.ReadLine();
+            string[] words = input.Split(' ');
 
-    /// <summary>
-    /// Считает сумму целых чисел на отрезке [start, end).
-    /// </summary>
-    private static int CalculateRangeSum(int start, int end)
-    {
-        int sum = 0;
-        for (int i = start; i < end; i++)
-        {
-            sum += i;
-        }
-        return sum;
-    }
-
-    /// <summary>
-    /// Генерирует двумерный массив случайных чисел.
-    /// </summary>
-    private static int[,] GenerateRandomMatrix(int rows, int columns, int minValue, int maxValue)
-    {
-        var matrix = new int[rows, columns];
-        var random = new Random();
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
+            Console.WriteLine("Задание 1 \n");
+            if (words.Length > 1)
             {
-                matrix[i, j] = random.Next(minValue, maxValue + 1);
+                string temp = words[0];
+                words[0] = words[words.Length - 1];
+                words[words.Length - 1] = temp;
             }
-        }
-        return matrix;
-    }
 
-    /// <summary>
-    /// Находит максимальный элемент в заданном столбце матрицы.
-    /// </summary>
-    private static int FindMaxInColumn(int[,] matrix, int columnIndex)
-    {
-        int max = matrix[0, columnIndex];
-        for (int i = 1; i < matrix.GetLength(0); i++)
-        {
-            if (matrix[i, columnIndex] > max)
-            {
-                max = matrix[i, columnIndex];
-            }
-        }
-        return max;
-    }
+            Console.WriteLine("Предложение с первым и последним словом местами: " + string.Join(" ", words));
 
-    /// <summary>
-    /// Печатает двумерный массив в консоль.
-    /// </summary>
-    private static void PrintMatrix(int[,] matrix)
-    {
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < matrix.GetLength(1); j++)
+            Console.WriteLine("Задание 2 \n");
+            if (words.Length > 2)
             {
-                Console.Write($"{matrix[i, j],5}");
+                words[1] = words[1] + words[2];
+                Array.Copy(words, 3, words, 2, words.Length - 3);
+                Array.Resize(ref words, words.Length - 1);
             }
-            Console.WriteLine();
-        }
-    }
 
-    /// <summary>
-    /// Безопасно читает целое число с консоли.
-    /// </summary>
-    private static int ReadIntFromConsole()
-    {
-        while (true)
-        {
-            string? input = Console.ReadLine();
-            if (int.TryParse(input, out int value))
+            Console.WriteLine("Предложение с объединёнными вторым и третьим словами: " + string.Join(" ", words));
+
+            Console.WriteLine("Задание 3 \n");
+            if (words.Length > 2)
             {
-                return value;
+                char[] thirdWordReversed = words[2].ToCharArray();
+                Array.Reverse(thirdWordReversed);
+                Console.WriteLine("Третье слово в обратном порядке: " + new string(thirdWordReversed));
             }
-            Console.Write("Ошибка ввода. Повторите попытку: ");
+
+            Console.WriteLine("Задание 4");
+            if (words.Length > 0 && words[0].Length > 2)
+            {
+                words[0] = words[0].Substring(2);
+            }
+
+            Console.WriteLine("Первое слово без первых двух букв: " + words[0]);
         }
     }
 }

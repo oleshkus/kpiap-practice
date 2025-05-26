@@ -6,39 +6,23 @@ namespace Task4
     {
         static void Main(string[] args)
         {
-            // Пример: a = 7, b = 8, c = 9
-            double a = 7, b = 8, c = 9;
-            try
+            Console.Write("Введите значение x: ");
+            double x = double.Parse(Console.ReadLine());
+            double y;
+            if (x > 1 && x < 2)
             {
-                double height = CalculateHeight(a, b, c);
-                Console.WriteLine($"Высота, опущенная на сторону a = {a}: h = {height}");
+                y = Math.Pow(x - 2, 2) + 6;
             }
-            catch (ArgumentException ex)
+            else if (x >= 2)
             {
-                Console.WriteLine($"Ошибка: {ex.Message}");
+                y = Math.Log(x + 3 * Math.Sqrt(x));
             }
-        }
-
-        /// <summary>
-        /// Вычисляет высоту треугольника, опущенную на сторону a, по известным сторонам a, b, c.
-        /// </summary>
-        /// <param name="a">Сторона a</param>
-        /// <param name="b">Сторона b</param>
-        /// <param name="c">Сторона c</param>
-        /// <returns>Высота h</returns>
-        static double CalculateHeight(double a, double b, double c)
-        {
-            // Проверка существования треугольника
-            if (a + b <= c || a + c <= b || b + c <= a)
-                throw new ArgumentException("Треугольник с такими сторонами не существует.");
-
-            // Полупериметр
-            double p = (a + b + c) / 2;
-            // Площадь по формуле Герона
-            double area = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-            // Высота на сторону a
-            double h = 2 * area / a;
-            return h;
+            else
+            {
+                Console.WriteLine("x вне области определения функции.");
+                return;
+            }
+            Console.WriteLine($"y = {y:F5}");
         }
     }
 }

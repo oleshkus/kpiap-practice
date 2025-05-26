@@ -6,42 +6,30 @@ namespace Task1
     {
         public static void Main()
         {
-            Console.Write("Введите a: ");
-            double a = double.Parse(Console.ReadLine());
-            Console.Write("Введите b: ");
-            double b = double.Parse(Console.ReadLine());
-            Console.Write("Введите h: ");
-            double h = double.Parse(Console.ReadLine());
-            Console.Write("Введите начальное значение x (от a): ");
-            double xStart = double.Parse(Console.ReadLine());
-            Console.Write("Введите конечное значение x (до b): ");
-            double xEnd = double.Parse(Console.ReadLine());
+            try
+            {
+                Console.Write("Enter x: ");
+                double x = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("\n  x\t\t f(x)");
-            Console.WriteLine("---------------------");
-            for (double x = xStart; x <= xEnd; x += h)
-            {
-                double y = CalculateFunction(x, a, b);
-                Console.WriteLine($"{x,6:F2}\t {y,10:F5}");
-            }
-        }
+                // Expression: y = sin^3(x) / x^3
+                double numerator = Math.Pow(Math.Sin(x), 3);
+                double denominator = Math.Pow(x, 3);
 
-        /// <summary>
-        /// Вычисляет значение функции по условию задачи.
-        /// </summary>
-        public static double CalculateFunction(double x, double a, double b)
-        {
-            if (2 * x < 0)
-            {
-                return a + b * x;
+                double y = numerator / denominator;
+
+                Console.WriteLine($"Value of expression: {y}");
             }
-            else if (2 * x <= 5)
+            catch (DivideByZeroException)
             {
-                return (a * x != 0) ? b * x / (a * x) : double.NaN;
+                Console.WriteLine("Error: Division by zero!");
             }
-            else
+            catch (FormatException)
             {
-                return Math.Log(b * x) + Math.Sin(a * x);
+                Console.WriteLine("Error: Invalid input format!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
             }
         }
     }

@@ -6,26 +6,31 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вычисление площади поверхности цилиндра.");
-            Console.Write("Введите исходные данные:\nРадиус основания (см) -> ");
-            double radius = double.Parse(Console.ReadLine());
-            Console.Write("Высота цилиндра (см) -> ");
-            double height = double.Parse(Console.ReadLine());
+            Console.Write("Введите сторону a: ");
+            double a = double.Parse(Console.ReadLine());
+            Console.Write("Введите сторону b: ");
+            double b = double.Parse(Console.ReadLine());
+            Console.Write("Введите сторону c: ");
+            double c = double.Parse(Console.ReadLine());
 
-            double surfaceArea = CalculateCylinderSurfaceArea(radius, height);
-            Console.WriteLine($"Площадь поверхности цилиндра: {surfaceArea:F2} кв.см.");
+            if (!IsTriangleExists(a, b, c))
+            {
+                Console.WriteLine("Треугольник с такими сторонами не существует.");
+                return;
+            }
+
+            bool isIsosceles = a == b || b == c || a == c;
+            Console.WriteLine(isIsosceles
+                ? "Треугольник равнобедренный."
+                : "Треугольник не равнобедренный.");
         }
 
         /// <summary>
-        /// Вычисляет площадь полной поверхности цилиндра.
+        /// Проверяет существование треугольника по неравенству треугольника.
         /// </summary>
-        /// <param name="radius">Радиус основания цилиндра</param>
-        /// <param name="height">Высота цилиндра</param>
-        /// <returns>Площадь поверхности цилиндра</returns>
-        static double CalculateCylinderSurfaceArea(double radius, double height)
+        static bool IsTriangleExists(double a, double b, double c)
         {
-            // S = 2πr^2 + 2πrh
-            return 2 * Math.PI * radius * (radius + height);
+            return a + b > c && a + c > b && b + c > a;
         }
     }
 }

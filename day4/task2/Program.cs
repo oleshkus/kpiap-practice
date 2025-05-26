@@ -2,56 +2,56 @@ using System;
 
 namespace Task2
 {
+    public class OutOfRangeException : Exception
+    {
+        public OutOfRangeException(string message) : base(message) { }
+    }
+
     public class Program
     {
         public static void Main()
         {
-            // Ввод первого набора
-            Console.WriteLine("Введите три числа для первого набора:");
-            double a1 = double.Parse(Console.ReadLine());
-            double b1 = double.Parse(Console.ReadLine());
-            double c1 = double.Parse(Console.ReadLine());
-
-            // Ввод второго набора
-            Console.WriteLine("Введите три числа для второго набора:");
-            double a2 = double.Parse(Console.ReadLine());
-            double b2 = double.Parse(Console.ReadLine());
-            double c2 = double.Parse(Console.ReadLine());
-
-            SortInc3(ref a1, ref b1, ref c1);
-            SortInc3(ref a2, ref b2, ref c2);
-
-            Console.WriteLine($"Первый набор после сортировки: {a1}, {b1}, {c1}");
-            Console.WriteLine($"Второй набор после сортировки: {a2}, {b2}, {c2}");
-        }
-
-        /// <summary>
-        /// Сортирует три числа по возрастанию.
-        /// </summary>
-        public static void SortInc3(ref double a, ref double b, ref double c)
-        {
-            if (a > b)
+            try
             {
-                Swap(ref a, ref b);
+                Console.Write("Enter x: ");
+                double x = double.Parse(Console.ReadLine());
+                double result = CalculateFunction(x);
+                Console.WriteLine($"f(x) = {result}");
             }
-            if (b > c)
+            catch (DivideByZeroException ex)
             {
-                Swap(ref b, ref c);
+                Console.WriteLine($"Error: {ex.Message}");
             }
-            if (a > b)
+            catch (FormatException)
             {
-                Swap(ref a, ref b);
+                Console.WriteLine("Error: Invalid input format!");
+            }
+            catch (OutOfRangeException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Меняет местами два числа.
-        /// </summary>
-        public static void Swap(ref double x, ref double y)
+        private static double CalculateFunction(double x)
         {
-            double temp = x;
-            x = y;
-            y = temp;
+            if (x > -2 && x < 5)
+            {
+                if (x == 5)
+                    throw new DivideByZeroException("Division by zero in expression 3x/(x-5)!");
+                return 3 * x / (x - 5);
+            }
+            else if (x > 5)
+            {
+                return x - 1;
+            }
+            else
+            {
+                throw new OutOfRangeException("x is out of the valid range (-2, +∞)!");
+            }
         }
     }
 }

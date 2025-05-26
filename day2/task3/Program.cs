@@ -1,24 +1,14 @@
-namespace Task3
-{
-    using System;
+﻿namespace task3;
 
-    class Program
+class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.Write("Введите целое число N (1 <= N <= 10): ");
-            int n = int.Parse(Console.ReadLine());
-            if (n < 1 || n > 10)
-            {
-                Console.WriteLine("Ошибка: N должно быть от 1 до 10.");
-                return;
-            }
-            int sum = 0;
-            for (int i = n; i <= 2 * n; i++)
-            {
-                sum += i * i;
-            }
-            Console.WriteLine($"Сумма квадратов от N до 2N: {sum}");
-        }
+        Circle circle = new Circle(0, 0, 5);
+        Console.WriteLine($"\nКруг с центром в (0,0) и радиусом 5");
+        Console.WriteLine($"Площадь: {circle.GetArea():F2}");
+        Console.WriteLine($"Длина окружности: {circle.GetCircumference():F2}");
+        Console.WriteLine($"Точка (3,4) внутри круга? {circle.ContainsPoint(3, 4)}");
+        Console.WriteLine($"Точка (6,0) внутри круга? {circle.ContainsPoint(6, 0)}");
     }
 }

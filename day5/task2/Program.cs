@@ -1,57 +1,72 @@
-using System;
+namespace Task2;
 
-namespace Task2
+internal class Program
 {
-    public class OutOfRangeException : Exception
+    private static void Main(string[] args)
     {
-        public OutOfRangeException(string message) : base(message) { }
+        Console.WriteLine("TASK 1\n");
+        var array = new int[20];
+        var random = new Random();
+        for (var i = 0; i < array.Length; i++)
+        {
+            array[i] = random.Next(-100, 100);
+            Console.Write($"{array[i]} ");
+        }
+
+        Console.WriteLine($"\n {BinarySearch(array, 4, 0, array.Length - 1)}");
+        foreach (var element in array)
+        {
+            Console.Write($"{element} ");
+        }
+
+        Console.WriteLine("TASK 2\n");
+        Console.WriteLine(CalculateAverage(array));
     }
 
-    public class Program
+    /// <summary>
+    /// Выполняет бинарный поиск значения в массиве.
+    /// </summary>
+    /// <param name="array">Массив для поиска</param>
+    /// <param name="searchedValue">Искомое значение</param>
+    /// <param name="first">Первый индекс</param>
+    /// <param name="last">Последний индекс</param>
+    /// <returns>Индекс найденного элемента или -1</returns>
+    private static int BinarySearch(int[] array, int searchedValue, int first, int last)
     {
-        public static void Main()
+        if (first > last)
         {
-            try
-            {
-                Console.Write("Enter x: ");
-                double x = double.Parse(Console.ReadLine());
-                double result = CalculateFunction(x);
-                Console.WriteLine($"f(x) = {result}");
-            }
-            catch (DivideByZeroException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Error: Invalid input format!");
-            }
-            catch (OutOfRangeException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
-            }
+            return -1;
         }
 
-        private static double CalculateFunction(double x)
+        var middle = (first + last) / 2;
+        var middleValue = array[middle];
+
+        if (middleValue == searchedValue)
         {
-            if (x > -2 && x < 5)
-            {
-                if (x == 5)
-                    throw new DivideByZeroException("Division by zero in expression 3x/(x-5)!");
-                return 3 * x / (x - 5);
-            }
-            else if (x > 5)
-            {
-                return x - 1;
-            }
-            else
-            {
-                throw new OutOfRangeException("x is out of the valid range (-2, +∞)!");
-            }
+            return middle;
         }
+        else if (middleValue > searchedValue)
+        {
+            return BinarySearch(array, searchedValue, first, middle - 1);
+        }
+        else
+        {
+            return BinarySearch(array, searchedValue, middle + 1, last);
+        }
+    }
+
+    /// <summary>
+    /// Вычисляет среднее значение элементов массива.
+    /// </summary>
+    /// <param name="array">Массив чисел</param>
+    /// <returns>Среднее значение</returns>
+    private static int CalculateAverage(int[] array)
+    {
+        var sum = 0;
+        for (var i = 0; i < array.Length; i++)
+        {
+            sum += array[i];
+        }
+        return sum / array.Length;
     }
 }
